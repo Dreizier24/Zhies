@@ -1,0 +1,73 @@
+﻿<Window x:Class="Technoservice4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Technoservice4"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Margin="5"
+                Name="backButton"
+                Content="Выход"
+                FontSize="20" Click="backButton_Click"/>
+            
+            <Button
+                Grid.Column="1"
+                Margin="5"
+                Name="addButton"
+                FontSize="20"
+                Content="Добавить" Click="addButton_Click"/>
+
+            <Button
+                Grid.Column="2"
+                Margin="5"
+                Name="editButton"
+                FontSize="20"
+                Content="Изменить" Click="editButton_Click"/>
+
+            <Button
+                Grid.Column="4"
+                Name="deleteButton"
+                Margin="5"
+                FontSize="20"
+                Content="Удалить" Click="deleteButton_Click"/>
+
+        </Grid>
+
+        <DataGrid Grid.Row="1"
+                  Margin="5"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding Requests}"
+                  SelectedItem="{Binding SelectedRequest}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding RequestId}"/>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding Equipment}"/>
+                <DataGridTextColumn Header="Тип оборудования" Binding="{Binding EquipmentType.EquipmentTitle}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusTitle}"/>
+                <DataGridTextColumn Header="Описание проблемы" Binding="{Binding ProblemDescription}"/>
+                <DataGridTextColumn Header="Дата начала" Binding="{Binding StartDate}"/>
+                <DataGridTextColumn Header="Дата окончания" Binding="{Binding DateEnd}"/>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Client.User.Surname}"/>
+                <DataGridTextColumn Header="Мастер" Binding="{Binding Master.User.Surname}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</Window>
